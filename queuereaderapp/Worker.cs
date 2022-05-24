@@ -56,7 +56,7 @@ namespace QueueWorker
                         await client.DeleteMessageAsync(message.MessageId, message.PopReceipt, stoppingToken);
 
                         // const stateUrl = `http://localhost:${daprPort}/v1.0/state/${stateStoreName}`;
-                        Uri comosDbUrl = new Uri($"https://localhost:443/v1.0/state/arracosmosdb");
+                        Uri comosDbUrl = new Uri($"http://localhost:3000/v1.0/state/arracosmosdb");
 
                         await httpClient.PostAsync(comosDbUrl, JsonContent.Create(new { Id = message.MessageId, Message = message.Body?.ToString() }), stoppingToken);
 
