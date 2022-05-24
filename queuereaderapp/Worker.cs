@@ -58,8 +58,12 @@ namespace QueueWorker
                         // const stateUrl = `http://localhost:${daprPort}/v1.0/state/${stateStoreName}`;
                         Uri comosDbUrl = new Uri($"http://localhost:3000/v1.0/state/arracosmosdb");
 
+                        
+                        logger.LogInformation("Sending to CosmosDB... ");
+
                         await httpClient.PostAsync(comosDbUrl, JsonContent.Create(new { Id = message.MessageId, Message = message.Body?.ToString() }), stoppingToken);
 
+                        logger.LogInformation("Message sent to CosmosDB!");
 
                     }
                     catch (Azure.RequestFailedException rfe)
