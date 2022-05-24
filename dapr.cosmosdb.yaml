@@ -1,0 +1,17 @@
+# statestore.yaml for Azure Blob storage component
+componentType: state.azure.cosmosdb
+version: v1
+metadata:
+- name: url
+  value: https://arracosmosdb.documents.azure.com:443/
+- name: masterKey
+  secretRef: masterkeyref
+- name: database
+  value: ToDoList
+- name: collection
+  value: Items
+secrets:
+- name: masterkeyref
+  value: "Be8K22HME2zbMjAdCwlvuegqkZoCkR0gEMYRM0TgRpyvmmQaeCl98OrvWEP1Ze2k2Ho8Itd2XWObg7NPaRWoJg=="
+scopes:
+- queuereader

@@ -55,6 +55,12 @@ namespace QueueWorker
 
                         await client.DeleteMessageAsync(message.MessageId, message.PopReceipt, stoppingToken);
 
+                        // const stateUrl = `http://localhost:${daprPort}/v1.0/state/${stateStoreName}`;
+                        Uri comosDbUrl = new Uri($"http://localhost:80/v1.0/state/arracosmosdb");
+
+                        await httpClient.PostAsync(comosDbUrl, JsonContent.Create(new { Id = message.MessageId, Message = message.Body?.ToString() }), stoppingToken);
+
+
                     }
                     catch (Azure.RequestFailedException rfe)
                     {
@@ -139,7 +145,11 @@ namespace QueueWorker
 
             logger.LogInformation($"Ready to send messages to '{storeUrl}'.");
 
+            
+            
             return storeUrl;
         }
+    
+       
     }
 }

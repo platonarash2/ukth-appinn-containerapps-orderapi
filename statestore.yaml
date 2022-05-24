@@ -1,0 +1,16 @@
+
+# statestore.yaml for Azure Blob storage component
+componentType: state.azure.blobstorage
+version: v1
+metadata:
+- name: accountName
+  value: "asdjb36ti4unjuve"
+- name: accountKey
+  secretRef: account-key
+- name: containerName
+  value: daprcontainer
+secrets:
+- name: account-key
+  value: "MZa9dbUY/HOy7RZ0+l+z3JGU5xjlV4IHuz4w04k9ACSc21Tk4YbboKWbY+okjGKLCGSncZDO3FMPdWe7b2ZGXA=="
+scopes:
+- nodeapp
